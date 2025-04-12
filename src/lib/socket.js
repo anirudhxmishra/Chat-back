@@ -7,7 +7,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ["https://fullstack-chat-application-git-87874e-anirudhxmishras-projects.vercel.app/"],
+    origin: ["https://fullstack-chat-application-git-87874e-anirudhxmishras-projects.vercel.app"],
   },
 });
 
