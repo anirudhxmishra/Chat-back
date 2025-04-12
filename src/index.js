@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://fullstack-chat-application-git-87874e-anirudhxmishras-projects.vercel.app/",
+    origin: "https://fullstack-chat-application-git-87874e-anirudhxmishras-projects.vercel.app/",
     credentials: true,
   })
 );
