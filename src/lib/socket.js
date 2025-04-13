@@ -7,15 +7,15 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ["https://fullstack-chat-application-git-87874e-anirudhxmishras-projects.vercel.app"],
+    origin: [
+      "https://fullstack-chat-application-bgqx.vercel.app",  // Frontend URL
+      "https://fullstack-chat-application-git-87874e-anirudhxmishras-projects.vercel.app", // Another frontend URL (if applicable)
+    ],
+    methods: ["GET", "POST"],
+    credentials: true,  // Allow cookies if you use them for auth
   },
 });
 
-export function getReceiverSocketId(userId) {
-  return userSocketMap[userId];
-}
-
-// used to store online users
 const userSocketMap = {}; // {userId: socketId}
 
 io.on("connection", (socket) => {
@@ -24,7 +24,7 @@ io.on("connection", (socket) => {
   const userId = socket.handshake.query.userId;
   if (userId) userSocketMap[userId] = socket.id;
 
-  // io.emit() is used to send events to all the connected clients
+  // Emit the list of online users
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
   socket.on("disconnect", () => {
@@ -34,4 +34,8 @@ io.on("connection", (socket) => {
   });
 });
 
-export { io, app, server }; 
+export function getReceiverSocketId(userId) {
+  return userSocketMap[userId];
+}
+
+export { io, app, server };
